@@ -1,0 +1,25 @@
+{
+    "mouseover":[
+       {
+          "selector":".readme",
+          "text":[
+             "I want to see {text}  🥺 ?"
+          ]
+       },
+       {
+          "selector":".m_search",
+          "text":[
+             "What are you looking for, do you need help? "
+          ]
+       }
+    ],
+    "click":[
+       {
+          "selector":"#landlord #live2d",
+          "text":[
+             "-,-"
+             
+          ]
+       }
+    ]
+ }
