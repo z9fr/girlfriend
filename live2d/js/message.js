@@ -1,3 +1,6 @@
+var message_Path = '/wp-content/plugins/girlfriend/live2d/'
+var home_Path = "https://dasith.works/"
+
 function renderTip(template, context) {
     var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
     return template.replace(tokenReg, function (word, slash1, token, slash2) {
@@ -24,6 +27,26 @@ var re = /x/;
 console.log(re);
 re.toString = function() {
     showMessage('Haha, you opened the console, do you want to see my secret? ', 5000);
+    console.log(`
+  く__,.ヘヽ.        /  ,ー､ 〉
+           ＼ ', !-─‐-i  /  /´
+           ／｀ｰ'       L/／｀ヽ､
+         /   ／,   /|   ,   ,       ',
+       ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
+        ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
+          !,/7 '0'     ´0iソ|    |
+          |.从"    _     ,,,, / |./    |
+          ﾚ'| i＞.､,,__  _,.イ /   .i   |
+            ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
+              | |/i 〈|/   i  ,.ﾍ |  i  |
+             .|/ /  ｉ：    ﾍ!    ＼  |
+              kヽ>､ﾊ    _,.ﾍ､    /､!
+              !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
+              ﾚ'ヽL__|___i,___,ンﾚ|ノ
+                  ﾄ-,/  |___./
+                  'ｰ'    !_,.:
+`);
+
     return '';
 };
 
@@ -34,6 +57,7 @@ $(document).on('copy', function (){
 function initTips(){
     $.ajax({
         cache: true,
+        //url: '/wp-content/plugins/girlfriend/live2d/message.json',
         url: `${message_Path}message.json`,
         dataType: "json",
         success: function (result){
@@ -76,7 +100,7 @@ initTips();
             text = ' Hi! Friends from Google Search! <br>Welcome to visit  <span style="color:#0099cc;">「 ' + document.title.split(' - ')[0] + ' 」</span>';
         }
     }else {
-        if (window.location.href == `${home_Path}`) { //Home page URL judgment, need to end with a slash 
+        if (window.location.href == `${home_Path}`) {  //Home page URL judgment, need to end with a slash  eg https://example.com/
             var now = (new Date()).getHours();
             if (now > 23 || now <= 5) {
                 text = "Are you a night owl? If you haven't gone to bed so late, will you get up tomorrow? ";
@@ -89,11 +113,11 @@ initTips();
             } else if (now > 14 && now <= 17) {
                 text = "It's easy to get sleepy in the afternoon. Have you achieved today's sports goal? ";
             } else if (now > 17 && now <= 19) {
-                text = "It's evening! The sunset outside the window is very beautiful, the most beautiful but the sunset is red~~ ";
+                text = "It's evening! The sunset outside the window is very beautiful, the most beautiful but the sunset is red :) ";
             } else if (now > 19 && now <= 21) {
                 text = "Good evening, how are you doing today? ";
             } else if (now > 21 && now <= 23) {
-                text = "It's already so late, rest early, good night~~ ";
+                text = "It's already so late, rest early, good night :) ";
             } else {
                 text = "Hi~ Come and play with me! ";
             }
@@ -103,14 +127,6 @@ initTips();
     }
     showMessage(text, 12000);
 })();
-
-window.setInterval(showHitokoto,30000);
-
-function showHitokoto(){
-    $.getJSON('https://v1.hitokoto.cn/',function(result){
-        showMessage(result.hitokoto, 5000);
-    });
-}
 
 function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
@@ -137,4 +153,6 @@ function initLive2d (){
         $('.hide-button').fadeOut(600)
     })
 }
+
+
 initLive2d ();
